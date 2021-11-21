@@ -103,7 +103,7 @@ class ApiDeclarations:
         return r.status_code, r.json()
 
     def update_session(self, uuid, new_session):
-        endpoint = 'api/session/' + uuid
+        endpoint = 'api/session' 
         r = requests.put(self.url + endpoint, headers=self.calc_auth(endpoint, "PUT"), data=json.dumps(new_session))
         return r.status_code
 
@@ -240,10 +240,11 @@ class ApiDeclarations:
         return r.status_code
     # --------------------------------------------------------------
 
-# my_api = ApiDeclarations("http://soofa-1.dk.visionect.com:8081/", "3320bc819ed6cef5", "le7hd7vPh7ulBSeJXbc85XOrHZbGTjjySKF8Vak8DJc")
-# uuid = "36005700-0e51-3630-3838-393500000000"
-#
-# scd, resp = my_api.get_device_status(uuid, "1518084800", "1520501176", "true")
-#
-# print("wutt \n")
-# print("Device status code: {} resp {}".format(scd, resp))
+    #       WEBKIT CACHE
+    # --------------------------------------------------------------
+    def cleare_cache(self, uuid):
+        endpoint = 'api/session/webkit-clear-cache' 
+        r = requests.post(self.url + endpoint, headers=self.calc_auth(endpoint, "GET"), data=uuid)
+        return r.status_code
+
+    # --------------------------------------------------------------
